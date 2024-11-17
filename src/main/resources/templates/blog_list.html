@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Blog List</title>
+</head>
+<body>
+<h1>All Blogs</h1>
+<ul>
+    <li th:each="blog : ${blogs}">
+        <a th:href="@{/api/blogs/{id}(id=${blog.id})}" th:text="${blog.title}"></a>
+        <div>
+            <img th:if="${blog.image != null}"
+                 th:src="@{/api/blogs/{id}/image(id=${blog.id})}"
+                 alt="Blog Image"
+                 width="100" height="100"/>
+            <span th:if="${blog.image == null}">No image available</span>
+        </div>
+    </li>
+</ul>
+<a href="/api/blogs/new">Create New Blog</a>
+</body>
+</html>
